@@ -200,6 +200,119 @@ if (x >= 0 && x <= 360) {
 
 
 #7. Input value of ‘x’(0-360). Calculate and print tanx=sinx/cosx [ Note: expression for sinx and cosx is given in Q.No.5,6 above].
+# Function to calculate the factorial of a number (as numeric)
+factorial <- function(n) {
+  if (n == 0) {
+    return(1)
+  } else {
+    return(as.numeric(n * factorial(n - 1)))
+  }
+}
+
+# Input value of 'x' (0 to 360)
+x <- as.numeric(readline(prompt = "Enter the value of 'x' (between 0 and 360): "))
+
+
+if (x >= 0 && x <= 360) {
+  # Input the number of terms
+  terms <- as.integer(readline(prompt = "Enter the number of terms: "))
+
+
+# Function to calculate sinx
+flag=1
+calculate_sinx <- function(x, terms) {
+  result <- 0  
+  x<-(pi*x/180)
+  for (i in 1:terms) {
+    term <- flag*(x^(2*i-1))/ factorial(2*i-1)  # Calculate the current term
+    result <- result + term  # Add the current term to the result
+    flag=flag*(-1)
+  }
+  
+  return(result)
+}
+
+  
+  if (terms > 0) {
+    # Calculate the value of sin x with the specified number of terms
+    result <- calculate_sinx(x, terms)
+    
+  } else {
+    cat("Please enter a valid positive number of terms.\n")
+  }
+} else {
+  cat("Please enter a valid value of 'x' between 0 and 360.\n")
+}
+
+
+# Function to calculate cosx
+flag=-1
+calculate_cosx <- function(x, terms) {
+  resultc <- 1  
+  x<-(pi*x/180)
+  for (i in 1:terms) {
+    term <- (x^(2*i))/ factorial(2*i)  # Calculate the current term
+    resultc <- resultc + flag*term  # Add the current term to the result
+    flag=flag*(-1)
+  }
+  
+  return(resultc)
+}
+      # Calculate the value of cos x with the specified number of terms
+    resultc <- calculate_cosx(x, terms)
+cat("The value of tan",x,"is approximately=",result/resultc)
+
 #8. Calculate the value of PI. Where PI = 3½ * 2 (1 – (3^-1)/3 + (3^-2)/5 – (3^-3)/7 + (3^-4)/9 – (3^-5)/11 …….) → PI= 3.1415926535897932384
+calculate_pi <- function(terms) {
+  result <-0  
+  flag=1
+  for (i in 0:(terms-1)) {
+    term <- (3^(-i)/(2*i+1))  # Calculate the current term
+    result <- result + flag*term  # Add the current term to the result
+    flag=flag*(-1)
+  }
+  
+  return(result)
+}
+terms <- as.integer(readline(prompt = "Enter the number of terms: "))
+ cat(sqrt(3)*2*calculate_pi(terms))
+
+
+
 #9. Write a program which will print those 3 digit numbers where the sum of the cubes of the digits:1^3+5^3+3^3=153 
+for(i in 100:999){
+  sum = 0
+  d = 0
+  copy = i
+  while(copy > 0){
+    d = copy %% 10
+    sum = sum + (d * d * d)
+    copy = copy %/% 10  # Use %/% for integer division
+  }
+  if (i == sum){
+    cat(i, "\n")
+  }
+}
+
+
+
 #10. Input n,r where n,r>=0 and r<=n. Calculate Binomial coefficient nCr= n!/(r! (n-r)!)
+# Function to calculate the factorial of a number (as numeric)
+factorial <- function(n) {
+  if (n == 0) {
+    return(1)
+  } else {
+    return(as.numeric(n * factorial(n - 1)))
+  }
+}
+
+# Input value of n and r
+n <- as.numeric(readline(prompt = "Enter the value of n "))
+r <- as.numeric(readline(prompt = "Enter the value of r "))
+if (n >= 0 && r <= n && r>=0) {
+  ans=factorial(n)/(factorial(r)*factorial(n-r))
+  cat(ans)}
+
+
+
+
